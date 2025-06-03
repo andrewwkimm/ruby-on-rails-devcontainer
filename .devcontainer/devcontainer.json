@@ -29,5 +29,5 @@
 	},
 	
 	"forwardPorts": [3000, 5432],
-	"postCreateCommand": "bundle install && yarn install"
+	"postCreateCommand": "bash ./.devcontainer/setup.sh"
 }
