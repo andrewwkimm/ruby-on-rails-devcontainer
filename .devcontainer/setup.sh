@@ -5,5 +5,4 @@ if [ ! -f "./config/application.rb" ]; then
   rails new . --force --skip-bundle --skip-git --database=postgresql
 fi
 
-bundle install
-yarn install
+make setup
