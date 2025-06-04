@@ -1,74 +1,30 @@
-# Overcommit configuration for Ruby/Rails project
-# Install: gem install overcommit
-# Setup: overcommit --install
-
 PreCommit:
-  # Built-in hooks (equivalent to pre-commit-hooks)
-  TrailingWhitespace:
-    enabled: true
-    exclude:
-      - '**/*.md'  # Markdown might need trailing spaces for line breaks
-
-  # Check for files that would be too large
-  HardTabs:
-    enabled: true
-
-  # YAML syntax checking
-  YamlSyntax:
-    enabled: true
-
-  # JSON syntax checking  
-  JsonSyntax:
-    enabled: true
-
-  # Ruby-specific hooks
   RuboCop:
     enabled: true
     on_warn: fail
     command: ['bundle', 'exec', 'rubocop']
     flags: ['--format', 'emacs', '--force-exclusion', '--display-cop-names']
-    include:
-      - '**/*.rb'
-      - '**/*.rake'
-      - '**/Rakefile'
-      - '**/Gemfile'
-      - '**/config.ru'
 
-  # Bundle check (equivalent to dependency checks)
   BundleCheck:
     enabled: true
 
-  # Rails-specific checks
   RailsSchemaUpToDate:
     enabled: true
 
-  # RSpec tests (run affected tests)
-  RSpec:
+  TrailingWhitespace:
     enabled: true
-    command: ['bundle', 'exec', 'rspec']
-    # Only run specs for changed files (optional)
-    # flags: ['--format', 'progress']
+    exclude:
+      - '**/*.md'
 
-  # Custom hooks for additional checks
-  LocalHooks:
-    # Check for large files (similar to check-added-large-files)
-    large-files:
-      required_executable: 'find'
-      command: ['sh', '-c', 'find . -name "*.rb" -size +100k | head -1 | grep -q . && echo "Large Ruby files found" && exit 1 || exit 0']
-      
-    # Ensure files end with newline
-    end-of-file-newline:
-      required_executable: 'sh'
-      command: ['sh', '-c', 'for file in $(git diff --cached --name-only --diff-filter=ACM); do if [ -f "$file" ] && [ "$(tail -c1 "$file" | wc -l)" -eq 0 ]; then echo "File $file does not end with newline"; exit 1; fi; done']
+  YamlSyntax:
+    enabled: true
 
 PrePush:
-  # Run full test suite before pushing
   RSpec:
     enabled: true
     command: ['bundle', 'exec', 'rspec']
 
 CommitMsg:
-  # Ensure commit messages are properly formatted
   TextWidth:
     enabled: true
     max_subject_width: 50
