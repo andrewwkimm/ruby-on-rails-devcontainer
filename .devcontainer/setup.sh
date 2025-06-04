@@ -62,7 +62,7 @@ if [ ! -f "./config/application.rb" ]; then
   rails new . --force --skip-bundle --skip-git --database=postgresql --template=template.rb
 fi
 
-# Set ownership to vscoder user
+# Set ownership to vscode user
 chown -R vscode:vscode $(pwd)
 
 make setup
