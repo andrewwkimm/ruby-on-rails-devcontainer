@@ -16,10 +16,10 @@ formatter:
 	bundle exec rubocop --autocorrect
 
 setup:
-	overcommit --install
-	overcommit --sign
 	bundle install
 	yarn install
+	overcommit --install
+	overcommit --sign
 	make db-setup
 
 test:
