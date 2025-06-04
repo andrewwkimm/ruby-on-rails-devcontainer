@@ -59,7 +59,7 @@ git config --global user.name "$git_username"
 # Start a new Rails project if it doesn't exist
 if [ ! -f "./config/application.rb" ]; then
   read -p "Enter your project name: " project_name
-  rails new . --force --skip-bundle --skip-git --database=postgresql
+  rails new . --force --skip-bundle --skip-git --database=postgresql --template=template.rb
 fi
 
 # Set ownership to vscoder user
