@@ -20,7 +20,7 @@ setup:
 	overcommit --sign
 	bundle install
 	yarn install
-	db-setup
+	make db-setup
 
 test:
 	bundle exec rspec --format progress
